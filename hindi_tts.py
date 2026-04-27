@@ -10,10 +10,11 @@ VOICES = {
     "Madhur (Hindi/Hinglish - Male)": "hi-IN-MadhurNeural",
     "Swara (Hindi/Hinglish - Female)": "hi-IN-SwaraNeural",
     "Prabhat (Hinglish ONLY - Male)": "en-IN-PrabhatNeural",
+    "Neerja (Female - Indian English/Hinglish)": "en-IN-NeerjaNeural"
 }
 
-text = st.text_area("Yahan apni kahani likhein:", height=200)
-selected_voice_name = st.selectbox("Awaaz chunein:", list(VOICES.keys()))
+text = st.text_area("Paste your story here:", height=500)
+selected_voice_name = st.selectbox("Select Voice:", list(VOICES.keys()))
 selected_voice = VOICES[selected_voice_name]
 
 async def generate_speech(text, voice):
@@ -29,7 +30,7 @@ if st.button("Generate Audio"):
     if text.strip():
         # Quick validation
         if selected_voice.startswith("en-") and any(ord(c) > 128 for c in text):
-            st.error("Galti: 'Prabhat' voice Hindi script nahi padh sakti. Please 'Madhur' ya 'Swara' chunein.")
+            st.error("Error: 'Prabhat' can't read hindi script. Please choose 'Madhur' or 'Swara' .")
         else:
             with st.spinner("Processing..."):
                 try:
@@ -45,4 +46,4 @@ if st.button("Generate Audio"):
                 except Exception as e:
                     st.error(f"Error: {e}")
     else:
-        st.warning("Pehle text likhein.")
+        st.warning("Enter Something.")
