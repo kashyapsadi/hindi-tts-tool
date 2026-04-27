@@ -6,7 +6,7 @@ import os
 # Page config
 st.set_page_config(page_title="Indian Voice Selector", page_icon="🎙️")
 
-st.title("🎙️ Indian Accent TTS (Free)")
+st.title("🎙️ Indian Accent TTS")
 
 # Voice options ki list
 VOICES = {
@@ -16,12 +16,12 @@ VOICES = {
     "Neerja (Female - Indian English/Hinglish)": "en-IN-NeerjaNeural"
 }
 
-text = st.text_area("Yahan apna Hinglish text likhein:", 
-                    placeholder="Dosto, aaj ki kahani bahut bhayanak hai...",
-                    height=150)
+text = st.text_area("Paste your  text here:", 
+                    placeholder="Helo dosto, mera naam aditya hai...",
+                    height=550)
 
 # Dropdown for selecting voice
-selected_voice_name = st.selectbox("Apni pasand ki voice chunein:", list(VOICES.keys()))
+selected_voice_name = st.selectbox("Select your voice:", list(VOICES.keys()))
 selected_voice = VOICES[selected_voice_name]
 
 async def generate_speech(text, voice, output_file):
@@ -41,4 +41,4 @@ if st.button("Generate Audio"):
     else:
         st.warning("Pehle text likhein.")
 
-st.info("Tip: 'Prabhat' ya 'Neerja' try karein agar aapka text English words se bhara hai (Hinglish).")
+st.info("Tip: Try 'Prabhat' or 'Neerja' if your text is filled with English/Hinglish Words.")
