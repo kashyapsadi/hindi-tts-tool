@@ -30,7 +30,7 @@ if st.button("Generate Audio"):
     if text.strip():
         # Quick validation
         if selected_voice.startswith("en-") and any(ord(c) > 128 for c in text):
-            st.error("Error: 'Prabhat' can't read hindi script. Please choose 'Madhur' or 'Swara' .")
+            st.error("Error: Prabhat/Neerja can't read hindi script. Please choose 'Madhur' or 'Swara' .")
         else:
             with st.spinner("Processing..."):
                 try:
